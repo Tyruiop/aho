@@ -2,6 +2,8 @@
 
 A simple implementation of the Aho Corasick algorithm capable of working on any sequence.
 
+[![Clojars Project](https://img.shields.io/clojars/v/aho.svg)](https://clojars.org/aho)
+
 ## Usage
 
 ```
