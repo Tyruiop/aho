@@ -1,12 +1,12 @@
 # aho
 
-A simple implementation of the Aho Corasick algorithm capable of working on any sequence.
+A simple implementation of the [Aho Corasick](https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm) algorithm capable of working on any sequence.
 
 [![Clojars Project](https://img.shields.io/clojars/v/aho.svg)](https://clojars.org/aho)
 
 ## Usage
 
-```
+```clojure
 (:require [aho :refer [build-automaton search]])
 
 (def automaton (build-automaton [[:word1 "foo"] [:word2 "bar"]]))
