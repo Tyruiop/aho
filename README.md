@@ -7,7 +7,7 @@ A simple implementation of the [Aho Corasick](https://en.wikipedia.org/wiki/Aho%
 ## Usage
 
 ```clojure
-(:require [aho :refer [build-automaton search]])
+(:require [aho.core :refer [build-automaton search]])
 
 (def automaton (build-automaton [[:word1 "foo"] [:word2 "bar"]]))
 (search automaton "ofoo and bar")
