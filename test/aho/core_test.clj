@@ -1,5 +1,6 @@
 (ns aho.core-test
   (:require [clojure.test :refer :all]
+            [clojure.string :as str]
             [aho.core :refer :all]))
 
 (def autom-struct
@@ -40,4 +41,13 @@
     (let [hits (search autom "aababa")]
       (is (= (into #{} hits)
              #{{:index 4, :pattern 1} {:index 2, :pattern 1} {:index 3, :pattern 3}
-               {:index 2, :pattern 2}})))))
+               {:index 2, :pattern 2}}))))
+  (testing "Working on very long text"
+    (let [txt (str/join "" (repeatedly 100000 (fn [] (if (= 0 (rand-int 2)) "a" "b"))))
+          start (System/nanoTime)
+          _ (search (build-automaton [[:aa "aa"] [:bb "bb"] [:aab "aab"]]) txt)
+          end (System/nanoTime)]
+      (is (> 1 (/ (- end start) 1000000000))))))
+
+
+

@@ -104,7 +104,7 @@
         (fn [{:keys [index cur-node matches]} c]
           (let [node (get-next-node trie cur-node c)
                 new-matches
-                (concat
+                (into
                  (if-let [id (get-in trie (conj node :id))]
                    (conj matches {:index index :pattern id})
                    matches)
@@ -116,4 +116,3 @@
          :cur-node []
          :matches []})
        :matches))
-
