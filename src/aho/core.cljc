@@ -89,13 +89,12 @@
     (recur trie (get-in trie (conj cur-node :fail-edge)) c)))
 
 (defn- get-outputs
-  ([trie cur-node index] (get-outputs trie cur-node index []))
-  ([trie cur-node index acc]
-   (if-let [next-node (get-in trie (conj cur-node :output-edge))]
-     (recur
-      trie next-node index
-      (conj acc {:index index :pattern (get-in trie (conj next-node :id))}))
-     acc)))
+  [trie cur-node index acc]
+  (if-let [next-node (get-in trie (conj cur-node :output-edge))]
+    (recur
+     trie next-node index
+     (conj acc {:index index :pattern (get-in trie (conj next-node :id))}))
+    acc))
 
 (defn search
   [trie l]
@@ -108,7 +107,7 @@
                  (if-let [id (get-in trie (conj node :id))]
                    (conj matches {:index index :pattern id})
                    matches)
-                 (get-outputs trie node index))]
+                 (get-outputs trie node index []))]
             {:index (inc index)
              :cur-node node
              :matches new-matches}))
