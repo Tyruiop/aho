@@ -35,7 +35,7 @@
       (swap! atrie #(assoc-in % [:children c :fail-edge] []))
       (swap! queue conj [:children c]))
 
-    (while (and (not-empty @queue) (< @i 20))
+    (while (not-empty @queue)
       ;; process queue
       (let [node-path (first @queue)]
 
